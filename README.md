@@ -33,4 +33,14 @@ python3 train.py --teacher SAGE --exp_setting 1 --data_mode 0
 | **CS**      | 2e-2     | 5e-7      |
 | **Ogbn-arxiv** | 2e-2  | 1e-8      |
 
-(*Replace TBD with actual values.*)
+## Hyperparameters for Inductive Experiments
+
+| Dataset      | Beta (β) | Gamma (γ) |
+|-------------|---------|----------|
+| **Cora**    | 2e-2     | 2e-4     |
+| **Citeseer**| 1e-2     | 1e-4     |
+| **Pubmed**  | 1e-1    | 1e-5     |
+| **A-Photo** | 1e-1    | 6e-6   |
+| **CS**      | 1e-1    | 1e-5    |
+
+
