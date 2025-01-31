@@ -14,3 +14,7 @@ To run the FAITH framework in the transductive setting with a **SAGE** teacher o
 ```bash
 python3 train.py --teacher SAGE --exp_setting 0 --data_mode 0
 
+python3 train.py --teacher SAGE --exp_setting 1 --data_mode 0
+
+
+
