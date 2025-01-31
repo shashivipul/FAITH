@@ -6,6 +6,16 @@ This repository contains the source code for the **FAITH** framework. Below is a
 FAITH/ # Main directory containing the implementation │── FAITH_ind/ # Code for inductive learning │── FAITH_trans/ # Code for transductive learning │── param/ # Stores most of the hyperparameters
 
 
+## Requirements
+
+Ensure you have the following dependencies installed before running the project:
+
+```bash
+pip install numpy==1.21.6 scipy==1.7.3 torch==1.6.0 dgl==0.6.1 scikit-learn==1.0.2
+
+```
+
+
 ## Running Experiments
 
 ### Transductive Setting
