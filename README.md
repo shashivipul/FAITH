@@ -9,7 +9,7 @@ FAITH/ # Main directory containing the implementation │── FAITH_ind/ # Cod
 ## Running Experiments
 
 ### Transductive Setting
-To run the FAITH framework in the transductive setting with a **SAGE** teacher on the **Cora** dataset, use the following command:
+To run the FAITH framework in the transductive (0)/ inductive(1) setting with a **SAGE** teacher on the **Cora** dataset, use the following command:
 
 ```bash
 python3 train.py --teacher SAGE --exp_setting 0 --data_mode 0
