@@ -13,30 +13,7 @@ from sklearn.manifold import TSNE
 
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-def compute_loss_energy(adj, logits, node_energy_teacher, edge_idx, batch_size):
-    assert adj.is_sparse, "Adjacency matrix must be in sparse format."
-    edge_indices = adj.indices()
-    edge_weights = adj.values()
-    node_energy = torch.zeros(logits.size(0), device=logits.device)
-    for start in range(0, edge_indices.size(1), batch_size):
-        end = min(start + batch_size, edge_indices.size(1))
-        batch_edges = edge_indices[:, start:end].to(logits.device)
-        batch_weights = edge_weights[start:end].to(logits.device)
-        src, dst = batch_edges[0], batch_edges[1]
-        diff = (logits[src] - logits[dst]).to(logits.device) 
-        squared_diff = (torch.sum(diff**2, dim=1)).to(logits.device)  
-        weighted_diff = (batch_weights * squared_diff ).to(logits.device) 
-        node_energy.index_add_(0, src, weighted_diff)
-        node_energy.index_add_(0, dst, weighted_diff)
-    loss_energy = F.cosine_similarity(
-        node_energy[edge_idx[0]], node_energy_teacher[edge_idx[1]], dim=0
-    )
-    return loss_energy
-
-
-
-  
+ 
 # Training for teacher GNNs
 def train(model, g, feats, labels, criterion, optimizer, adj, idx):
 
