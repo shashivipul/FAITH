@@ -16,5 +16,21 @@ python3 train.py --teacher SAGE --exp_setting 0 --data_mode 0
 
 python3 train.py --teacher SAGE --exp_setting 1 --data_mode 0
 
+```
 
 
+
+
+
+## Hyperparameters for Transductive Experiments
+
+| Dataset      | Beta (β) | Gamma (γ) |
+|-------------|---------|----------|
+| **Cora**    | 2e-2     | 2e-5      |
+| **Citeseer**| 1     | 1e-5      |
+| **Pubmed**  | 2e-2     | 2e-6      |
+| **A-Photo** | 2e-2     | 2e-7      |
+| **CS**      | 2e-2     | 5e-7      |
+| **Ogbn-arxiv** | 2e-2  | 1e-8      |
+
+(*Replace TBD with actual values.*)
