@@ -566,7 +566,7 @@ def compute_loss_energy(adj, logits, node_energy_teacher, edge_idx, batch_size):
         node_energy.index_add_(0, src, weighted_diff)
         node_energy.index_add_(0, dst, weighted_diff)
     loss_energy = -F.cosine_similarity(
-        node_energy, node_energy_teacher, dim=0
+        node_energy[edge_idx[0]], node_energy_teacher[edge_idx[1]], dim=0
     )
     return loss_energy
 
