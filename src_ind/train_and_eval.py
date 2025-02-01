@@ -167,21 +167,21 @@ def train_teacher(param, model, g, feats, labels, indices, criterion, evaluator,
 
     if param['exp_setting'] == 'tran':
         out, _ = evaluate(model, g, feats)    
-        device = out.to(device)
-        adj_mat_final_t = adj_mat_final_t.to(device)
-        row, col = torch.nonzero(adj_mat_final_t, as_tuple=True)  
-        values = adj_mat_final_t[row, col]  
-        diff_teacher = out[row] - out[col]  
-        squared_diff_teacher = torch.sum(diff_teacher**2, dim=1)  
-        weighted_diff_teacher = values * squared_diff_teacher  
-        node_energy_teacher = torch.zeros(out.size(0)).to(device)
-        node_energy_teacher = node_energy_teacher.index_add(0, row, weighted_diff_teacher)
+
     else:
         obs_out, _ = evaluate(model, obs_g, obs_feats)
         out, _ = evaluate(model, g, feats)
         out[idx_obs] = obs_out
-
-
+        device = out.to(device)
+        adj_mat_final_t = adj_mat_final_t[idx_obs][:,idx_obs]
+        adj_mat_final_t = adj_mat_final_t.to(device)
+        row, col = torch.nonzero(adj_mat_final_t, as_tuple=True)  
+        values = adj_mat_final_t[row, col]  
+        diff_teacher = obs_out[row] - obs_out[col]  
+        squared_diff_teacher = torch.sum(diff_teacher**2, dim=1)  
+        weighted_diff_teacher = values * squared_diff_teacher  
+        node_energy_teacher = torch.zeros(obs_out.size(0)).to(device)
+        node_energy_teacher = node_energy_teacher.index_add(0, row, weighted_diff_teacher)
 
     return out, test_acc, test_val, test_best, state,node_energy_teacher,best_obs_IF,best_ind_IF
 
